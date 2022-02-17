@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Switch from './Switch';
 import {Select} from '@canonical/react-components';
+import Code from './Code';
 
 export type InputOptions = {
   query: string;
@@ -56,6 +57,11 @@ const LiveDemoBox = () => {
             </div>
             <div className="col-2 p-card">
               <Switch switchOptions={configValues.switch} />
+            </div>
+          </div>
+          <div className="row" style={{gridGap: 0}}>
+            <div className="p-card col-6 u-no-padding">
+              <Code />
             </div>
           </div>
         </form>
