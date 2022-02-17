@@ -60,7 +60,7 @@ const LiveDemoBox = () => {
             </div>
           </div>
           <div className="row" style={{gridGap: 0}}>
-            <div className="p-card col-6 u-no-padding">
+            <div className="p-card col-8 u-no-padding">
               <Code />
             </div>
           </div>

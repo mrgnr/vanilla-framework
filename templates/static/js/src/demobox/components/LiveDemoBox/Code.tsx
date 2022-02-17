@@ -9,7 +9,7 @@ const Code = () => {
   // TODO: move fetching the HTML example to the LiveDemoBox component
   useEffect(() => {
     const type = 'caution';
-    const theme = 'light';
+    const theme = 'dark';
     const style = 'inline';
     const actions = 'true';
     const dismiss = 'true';
@@ -48,7 +48,7 @@ const Code = () => {
 
   return (
     <div className="p-code--snippet">
-      <pre className="p-code-snippet__block u-no-padding u-no-margin language-html" data-lang="html">
+      <pre className="p-code-snippet__block u-no-margin language-html" data-lang="html">
         <code className="language-html">{html}</code>
       </pre>
     </div>
