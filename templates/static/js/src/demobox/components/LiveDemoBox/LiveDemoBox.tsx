@@ -3,7 +3,7 @@ import Switch from "./Switch";
 import { Select } from "@canonical/react-components";
 
 export type InputOptions = {
-  query: string;
+  key: string;
   label: string;
 };
 
@@ -24,11 +24,13 @@ type SelectValueType = {
 
 const LiveDemoBox = () => {
   const [configValues, setConfigValues] = useState<InitialState>();
-  const [selectValue, setSelectValues] = useState<SelectValueType>({
+  const [selectValues, setSelectValues] = useState<SelectValueType>({
     type: "",
     theme: "",
     style: "",
   });
+
+  console.log("!!! selectValues", selectValues);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,8 +46,8 @@ const LiveDemoBox = () => {
             return (
               "default" in dropdownValue &&
               setSelectValues({
-                ...selectValue,
-                [dropdownValue]: dropdownValue.query,
+                ...selectValues,
+                [dropdownValue]: dropdownValue.key,
               })
             );
           });
@@ -56,7 +58,7 @@ const LiveDemoBox = () => {
 
         const setDefaultSwitchValues = () => {
           json.switch.map((switchOption: any) => {
-            setSelectValues({ ...selectValue, [switchOption.query]: false });
+            setSelectValues({ ...selectValues, [switchOption.key]: false });
           });
         };
         setDefaultSwitchValues();
@@ -72,18 +74,18 @@ const LiveDemoBox = () => {
   ) => {
     if (e.target.value === "on") {
       setSelectValues({
-        ...selectValue,
-        [e.target.name]: !selectValue[e.target.name],
+        ...selectValues,
+        [e.target.name]: !selectValues[e.target.name],
       });
     } else {
       setSelectValues({
-        ...selectValue,
+        ...selectValues,
         [e.target.name]: e.target.value.toLowerCase(),
       });
     }
   };
 
-  const url = `/docs/examples/patterns/notifications/toast?type=${selectValue.type}&style=${selectValue.style}&actions=${selectValue.actions}&dismiss=${selectValue.dismiss}&timestamp=${selectValue.timestamp}`;
+  const url = `/docs/examples/patterns/notifications/toast?type=${selectValues.type}&style=${selectValues.style}&actions=${selectValues.actions}&dismiss=${selectValues.dismiss}&timestamp=${selectValues.timestamp}`;
 
   return (
     <section className="p-strip--light">
@@ -97,6 +99,7 @@ const LiveDemoBox = () => {
                 name="type"
                 onChange={handleChange}
                 options={configValues.dropdown.type}
+                key="type"
               />
             </div>
             <div className="col-2">
@@ -107,6 +110,7 @@ const LiveDemoBox = () => {
                 onChange={handleChange}
                 options={configValues.dropdown.theme}
                 disabled
+                key="theme"
               />
             </div>
             <div className="col-2">
@@ -116,6 +120,7 @@ const LiveDemoBox = () => {
                 name="style"
                 onChange={handleChange}
                 options={configValues.dropdown.style}
+                key="style"
               />
             </div>
           </div>
